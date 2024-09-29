@@ -19,6 +19,8 @@ class Pool{
 
     connect(options){
         this._pool=new pg.Pool(options);
+        return this._pool.query('SELECT 1 + 1;');
+        //to establish the connection between pool & database, we run a simple query as soon as the pool is created.
     }
 }
 module.exports=new Pool();
