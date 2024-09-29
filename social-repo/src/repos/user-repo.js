@@ -1,27 +1,19 @@
-const pool=require("../pool");
-
+const pool = require("../pool");
+const toCamelCase = require("./utils/to-camel-case");
 // option 3: defining user-repo as a class with STATIC METHODs
 // at the bottom NO NEED TO CREATE INSTANCE and export it without new keyword.
-class UserRepo{
-    static async find(){
-        const {rows}=await pool.query('SELECT * FROM users;');
-        return rows;   
-    }
-    static async findById(){
+class UserRepo {
+  static async find() {
+    const { rows } = await pool.query("SELECT * FROM users;");
 
-    }
-    static async insert(){
-
-    }
-    static async update(){
-
-    }
-    static async delete(){
-
-    }
-
+    return toCamelCase(rows);
+  }
+  static async findById() {}
+  static async insert() {}
+  static async update() {}
+  static async delete() {}
 }
-module.exports=UserRepo();
+module.exports = UserRepo;
 // at the bottom NO NEED TO CREATE INSTANCE and export it without new keyword.
 // option 2: defining user-repo as class having different instance method in it
 // at the bottom we could create instance of class and export it.
