@@ -27,6 +27,7 @@ class Pool {
     return this._pool.end();
   }
 
+  // REALLY BIG SECURITY HERE!!!
   query(sql) {
     return this._pool.query(sql);
   }
