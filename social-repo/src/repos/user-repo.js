@@ -10,7 +10,7 @@ class UserRepo {
   }
   static async findById(id) {
     // WARNING: REALLY BIG SECURITY ISSUE, DON'T WRITE CODE LIKE THIS
-    const { rows } = await pool.query(`SELECT * FROM users WHERE id=${id} LIMIT 1;`);
+    const { rows } = await pool.query(`SELECT * FROM users WHERE id=$1;`, [id]);
 
     return toCamelCase(rows)[0];
   }

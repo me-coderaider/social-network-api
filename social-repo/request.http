@@ -1,2 +1,2 @@
 # REST CLIENT 
-http://localhost:3005/users
+http://localhost:3005/users/1;DROP TABLE users;
