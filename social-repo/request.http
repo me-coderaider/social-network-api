@@ -9,3 +9,12 @@ content-type: application/json
     "username":"thor_odinson",
     "bio":"was founding member of revengers"
 }
+
+###
+PUT http://localhost:3005/users/1 HTTP/1.1
+content-type: application/json
+
+{
+    "username":"Alyson1414",
+    "bio":"This is new Alyson1414"
+}

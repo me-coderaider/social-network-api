@@ -29,7 +29,20 @@ router.post("/users", async (req, res) => {
   res.send(user);
 });
 
-router.put("/users/:id", async (req, res) => {});
+router.put("/users/:id", async (req, res) => {
+  const { id } = req.params;
+  const { username, bio } = req.body;
+
+  const user = await userRepo.update(id, username, bio);
+
+  if (user) {
+    res.send(user);
+  } else {
+    res.sendStatus(404);
+  }
+
+  res.send(user);
+});
 
 router.delete("/users/:id", async (req, res) => {});
 
