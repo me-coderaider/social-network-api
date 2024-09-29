@@ -41,9 +41,19 @@ router.put("/users/:id", async (req, res) => {
     res.sendStatus(404);
   }
 
-  res.send(user);
+  //   res.send(user);
 });
 
-router.delete("/users/:id", async (req, res) => {});
+router.delete("/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const user = await userRepo.delete(id);
+
+  if (user) {
+    res.send(user);
+  } else {
+    res.sendStatus(404);
+  }
+});
 
 module.exports = router;

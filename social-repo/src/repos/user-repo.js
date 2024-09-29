@@ -31,7 +31,16 @@ class UserRepo {
     );
     return toCamelCase(rows)[0];
   }
-  static async delete() {}
+  static async delete(id) {
+    const { rows } = await pool.query(
+      `
+            DELETE FROM users WHERE id=$1 RETURNING *;
+        `,
+      [id]
+    );
+
+    return toCamelCase(rows)[0];
+  }
 }
 module.exports = UserRepo;
 // at the bottom NO NEED TO CREATE INSTANCE and export it without new keyword.
