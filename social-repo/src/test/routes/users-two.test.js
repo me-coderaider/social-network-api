@@ -3,19 +3,16 @@ const request = require("supertest");
 const buildApp = require("../../app");
 const userRepo = require("../../repos/user-repo");
 const pool = require("../../pool");
+const context = require("../context");
 
-beforeAll(() => {
-  return pool.connect({
-    host: "localhost",
-    port: 5432,
-    database: "socialnetwork-test", // connecting to test database now.
-    user: "postgres",
-    password: "postgres",
-  });
+let localContext;
+
+beforeAll(async () => {
+  localContext = await context.build();
 });
 
 afterAll(() => {
-  return pool.close();
+  return localContext.close();
 });
 
 it("create a user", async () => {
