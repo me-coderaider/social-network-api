@@ -6,12 +6,14 @@ const pool = require("../../pool");
 
 const context = require("../context");
 
+let localContext;
+
 beforeAll(async () => {
-  const contextLocal = await context.build();
+  localContext = await context.build();
 });
 
 afterAll(() => {
-  return pool.close();
+  return localContext.close();
 });
 
 it("create a user", async () => {
